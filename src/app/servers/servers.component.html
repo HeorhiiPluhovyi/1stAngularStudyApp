@@ -1,0 +1,56 @@
+<label for="">Server Name</label>
+<input
+  type="text"
+  class="form-controle"
+  (input)="onUpdateServerName($event)">
+
+<input
+  type="text"
+  class="form-controle"
+  [(ngModel)]="serverName">
+<p>{{ serverName }}</p>
+<button
+  class="btn btn-primary"
+  [disabled]="!allowNewServer"
+  (click)="onCreateServer()"
+>Add Server</button>
+
+<p>{{ serverCreationStatus }}</p>
+<p *ngIf="serverCreated; else noServCreated">Server was created, server name is {{ serverName }}</p>
+
+<ng-template #noServCreated>
+  <p>No server was created!</p>
+</ng-template>
+
+<app-server></app-server>
+<app-server></app-server>
+<app-server *ngFor="let server of servers"></app-server>
+
+<label></label>
+<input
+  type="text"
+  class="form-control"
+  [(ngModel)]="userName"
+>
+<p>{{ userName }}</p>
+<button
+  class="btn btn-primary"
+  [disabled]="userNameCheaker()"
+  (click)="resetUserName()"
+>Reset user name</button>
+
+<label for=""></label>
+<button
+  class="btn btn-primary"
+  (click)="changeVisibilityOfDetails()"
+>
+  Display Datails
+</button>
+<p *ngIf="visibilityOfDetails">Secret Password = tuna</p>
+
+<p
+  *ngFor="let date of arrayOfClicks; let i = index"
+  [ngClass]="{afterFifth: i >= 4}"
+>
+  {{ date }}
+</p>
